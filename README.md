@@ -2,7 +2,6 @@ This Kata is the ruby version of the zanahrastovsek/GuildedRose katas, hosted [h
 
 It was originally created by Terry Hughes. See the [original repo](https://github.com/NotMyself/GildedRose)
 
-======================================
 Gilded Rose Requirements Specification
 ======================================
 
