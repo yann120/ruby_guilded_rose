@@ -137,6 +137,29 @@ describe GildedRose do
 
     end
 
+    context 'Conjured' do
+      let(:name) { 'Conjured' }
+
+      context 'before sell date' do
+        it 'its quality should decrease twice as fast' do
+          expect(item.quality).to be(8)
+        end
+
+        it 'its sell_in should decrease' do
+          expect(item.sell_in).to be(4)
+        end
+      end
+
+      context 'of 50 of quality ' do
+        let(:initial_quality) { 50 }
+
+        it 'its quality should stay equal to 48' do
+          expect(item.quality).to be(48)
+        end
+      end
+
+    end
+
     context 'Backstage passes' do
       # "Backstage passes", comme le "Aged Brie", augmente sa qualité (`quality`) plus le temps passe (`sellIn`) ;
       # La qualité augmente de 2 quand il reste 10 jours ou moins et de 3 quand il reste 5 jours ou moins, mais la qualité tombe à 0 après le concert.

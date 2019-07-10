@@ -1,4 +1,6 @@
 class GildedRose
+  SPECIAL_ITEMS = {"Aged Brie" => {sellable: true, quality: -1}, "Backstage passes to a TAFKAL80ETC concert" => {}, "Sulfuras, Hand of Ragnaros" => {sellable: false, quality: 0}}
+
 
   def initialize(items)
     @items = items
@@ -8,13 +10,19 @@ class GildedRose
     @items.each do |item|
       if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert"
         if item.quality > 0
-          if item.name != "Sulfuras, Hand of Ragnaros"
+          if item.name == 'Conjured'
+            item.quality = item.quality - 2
+          elsif item.name != "Sulfuras, Hand of Ragnaros"
             item.quality = item.quality - 1
           end
         end
       else
+
+        # Aged brie + backstage ---
         if item.quality < 50
           item.quality = item.quality + 1
+
+          # Backstage ---
           if item.name == "Backstage passes to a TAFKAL80ETC concert"
             if item.sell_in < 11
               if item.quality < 50
@@ -27,11 +35,18 @@ class GildedRose
               end
             end
           end
+          # Backstage ---
         end
+        # Aged brie + backstage ---
+
       end
+
+      # Sulfuras ---
       if item.name != "Sulfuras, Hand of Ragnaros"
         item.sell_in = item.sell_in - 1
       end
+      # Sulfuras ---
+
       if item.sell_in < 0
         if item.name != "Aged Brie"
           if item.name != "Backstage passes to a TAFKAL80ETC concert"
@@ -49,6 +64,7 @@ class GildedRose
           end
         end
       end
+
     end
   end
 end
